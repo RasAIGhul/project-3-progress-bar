@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-import "./stopwatch-component.js";
+
 
 class ProgressBar extends LitElement {
   static properties = {
