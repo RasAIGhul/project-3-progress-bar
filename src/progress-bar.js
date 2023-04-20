@@ -1,13 +1,17 @@
 import { LitElement, html, css } from 'lit';
-
+import "@lrnwebcomponents/count-up/count-up.js";
+import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js";
 
 
 class ProgressBar extends LitElement {
   static properties = {
     title: { type: String },
-    colorGradient: { type: String},
-    backgroundColor: {type: String},
-
+    backgroundColor: {type: String, reflect: true},
+    barColorLeft: {type: String, reflect: true},
+    barColorRight: {type: String, reflect: true},
+    animationStyle: {type: String, reflect: true},
+    counterTime: {type: String, reflect: true},
+    counterLabel: {type: String, reflect: true},
 
   }
 
@@ -23,33 +27,42 @@ class ProgressBar extends LitElement {
         height: 60px;
         width: 450px;
         margin-left: 40px;
+        background: grey;
       }
       .title{
         margin-top: 20px; 
         font-size: 20px;  
       }
       .backgroundProgress{
-        background: linear-gradient(to left, var(--background-of-bar, red), var(--background-of-bar, yellow));
+        background: linear-gradient(to left, red, yellow);
         border-radius: 5px;
-        height: 50px;
-        width: 440px;
+        width: 0%:
+        height: 3.14em;
         margin-left: 5px;
+        margin-right: 5px;
         margin-top: 5px;
-        animation: backgroundProgress var(--speed-of-bar, 5s) linear forwards;
+        transition: width 2s linear;
       }
-
-      @keyframes backgroundProgress{
-        0% {width: 0%; }
-        100% {width: 97.8%; }
-      }
+     
   `;
 
   constructor() {
     super();
     this.title = "my will to live";
     this.backgroundColor = "light gray";
+    this.counterTime = "100";
+    this.counterLabel = "100";
     
   }
+
+  updated(propertiesChanged) {
+    propertiesChanged.forEach((oldValue, propName) => {
+      if (propName == "elementVisible" && this[propName]) {
+        
+      }
+    });
+  }
+
 
   render() {
     return html`
@@ -61,11 +74,9 @@ class ProgressBar extends LitElement {
         <div class='progressBarStyling'>
           <div class='backgroundProgress'>
           </div>
-        <stopwatch-component>
-        </stopwatch-comonent>
+          <count-up class='counterClass' duration=${this.counterTime} end=${this.counterLabel}></count-up>
         </div>
   </div>
-
     `;
   }
 }
