@@ -5,7 +5,7 @@ import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-elemen
 
 class ProgressBar extends IntersectionObserverMixin(LitElement) {
   static properties = {
-    
+    elementVisible: { type: Boolean, reflect:true, attribute: "element-visible" },
     title: { type: String },
     backgroundColor: {type: String, reflect: true},
     barColorLeft: {type: String, reflect: true},
