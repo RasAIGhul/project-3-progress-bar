@@ -322,7 +322,7 @@
           "members": [
             {
               "kind": "method",
-              "name": "createBars"
+              "name": "mapThroughBars"
             },
             {
               "kind": "field",

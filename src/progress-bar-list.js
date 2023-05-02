@@ -27,12 +27,12 @@ class ProgressBarList extends IntersectionObserverMixin(LitElement) {
   constructor() {
     super();
     this.barArray=[];
- 
+    this.mapThroughBars();
   }
   
 
 
-  createBars() {
+  mapThroughBars() {
     const address = '/api/progress-bars';
    fetch(address).then((response) =>{
     if(response.ok){
@@ -40,7 +40,7 @@ class ProgressBarList extends IntersectionObserverMixin(LitElement) {
     }
          return [];
      }).then((data)=>{
-    this.bar = data;
+    this.barArray = data;
     });
     }
 
@@ -50,15 +50,23 @@ class ProgressBarList extends IntersectionObserverMixin(LitElement) {
   render() {
     return html`
     ${this.elementVisible ? html`
-<div class="wrapper">
-${this.bar.map(bars => html`
-    <progress-bar title="${bars.title}" endTime="${bars.endTime}" startTime="${bars.startTime}" widthSize="${bars.widthSize}" startColor="${bars.startColor}" endColor="${bars.endColor}">
-  </progress-bar>
-  `)}
-  </div>
- 
-`:``}
-`
+        <div class="wrapper">
+            ${this.barArray.map(barArray => html`
+            <progress-bar 
+            title="${barsArray.title}" 
+            counterStartTime = "${barArray.counterStartTime}"
+            counterEndTime = "${barArray.counterEndTime}" 
+            counterLabel ="${barArray.counterLabel}" 
+            duration = "${barArray.duration}" 
+            barWidth = "${barArray.barWidth}" 
+            barColorLeft = "${barArray.barColorLeft}"
+            barColorRight = "${barArray.barColorRight}" 
+            backgroundColor ="${barArray.backgroundColor}"></progress-bar>
+        </progress-bar>
+        `)}
+        </div>
+        `:``}
+    `
   }
 }
 
