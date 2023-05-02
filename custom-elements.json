@@ -432,8 +432,7 @@
               "kind": "field",
               "name": "duration",
               "privacy": "public",
-              "attribute": "duration",
-              "reflects": true
+              "attribute": "duration"
             },
             {
               "kind": "field",

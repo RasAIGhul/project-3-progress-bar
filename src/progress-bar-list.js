@@ -17,13 +17,6 @@ class ProgressBarList extends IntersectionObserverMixin(LitElement) {
   }
 
 
-
- 
-
-  static styles = css`
-    
-  `;
-
   constructor() {
     super();
     this.barArray=[];

@@ -12,7 +12,7 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
     barColorRight: {type: String, reflect: true},
     counterStartTime: {type: String, reflect: true},
     counterEndTime: {type: String, reflect: true},
-    duration: {type: String, reflect: true},
+    duration: {type: String},
     counterLabel: {type: String, reflect: true},
     barWidth: {type: String, reflect: true},
 
@@ -63,8 +63,8 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
   constructor() {
     super();
     this.title = "my will to live";
-    this.counterStartTime = "5";  
-    this.counterEndTime = "10";  // The length of time (in seconds) it takes for the counter to finish and the bar to finish
+    this.counterStartTime = "5";  // The value you want the timer to start at
+    this.counterEndTime = "10";  // The value you want the timer to end at
     this.counterLabel = "10";  // What physical number you want the timer to be at when it finishes NOT TIME
     this.duration = this.counterEndTime - this.counterStartTime;
     this.barWidth = "97.8%";

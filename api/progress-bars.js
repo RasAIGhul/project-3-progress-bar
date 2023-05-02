@@ -1,8 +1,7 @@
 export default async function handler(request, res) {
 
-    const progressBars=[
+    const progressBarsData=[
       {
-        "title": "my will to live",
         "backgroundColor": "grey",
         "barColorLeft": "black",
         "barColorRight": "blue",
@@ -43,6 +42,9 @@ export default async function handler(request, res) {
       },
   
     ];
+
+    const progressBars = progressBarsData.map((data) => new ProgressBar(data));
+
     res.setHeader('Cache-Control', 'max-age=0, s-maxage=1800');
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader("Access-Control-Allow-Origin", "*");
