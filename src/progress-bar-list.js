@@ -53,7 +53,7 @@ class ProgressBarList extends IntersectionObserverMixin(LitElement) {
         <div class="wrapper">
             ${this.barArray.map(barArray => html`
             <progress-bar 
-            title="${barsArray.title}" 
+            title="${barArray.title}" 
             counterStartTime = "${barArray.counterStartTime}"
             counterEndTime = "${barArray.counterEndTime}" 
             counterLabel ="${barArray.counterLabel}" 

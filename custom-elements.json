@@ -32,6 +32,33 @@
     },
     {
       "kind": "javascript-module",
+      "path": "stories/project-3-progress-bar.stories.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "App"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "stories/project-3-progress-bar.stories.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "App",
+          "declaration": {
+            "name": "App",
+            "module": "stories/project-3-progress-bar.stories.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/count-up.js",
       "declarations": [
         {
@@ -583,33 +610,6 @@
           "declaration": {
             "name": "TesterTest",
             "module": "src/tester-test.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "stories/project-3-progress-bar.stories.js",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "App"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "stories/project-3-progress-bar.stories.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "App",
-          "declaration": {
-            "name": "App",
-            "module": "stories/project-3-progress-bar.stories.js"
           }
         }
       ]
