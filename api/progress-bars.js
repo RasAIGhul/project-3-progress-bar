@@ -1,12 +1,15 @@
+
 export default async function handler(request, res) {
 
-    const progressBarsData=[
+
+    const progressBars=[
       {
+        "title": "my will to live",
         "backgroundColor": "grey",
         "barColorLeft": "black",
         "barColorRight": "blue",
-        "counterStartTime": "5",
-        "counterEndTime": "10", 
+        "counterStartTime": 6,
+        "counterEndTime": 1006, 
         "counterLabel": "10",  
         "barWidth": "97.8%",
       },
@@ -15,8 +18,8 @@ export default async function handler(request, res) {
         "backgroundColor": "grey",
         "barColorLeft": "black",
         "barColorRight": "orange",
-        "counterStartTime": "5",
-        "counterEndTime": "10", 
+        "counterStartTime": 5,
+        "counterEndTime": 10, 
         "counterLabel": "10",  
         "barWidth": "97.8%",
       },
@@ -25,8 +28,8 @@ export default async function handler(request, res) {
         "backgroundColor": "grey",
         "barColorLeft": "red",
         "barColorRight": "green",
-        "counterStartTime": "0",
-        "counterEndTime": "100",
+        "counterStartTime": 0,
+        "counterEndTime": 100,
         "counterLabel": "1",  
         "barWidth": "97.8%",
       },
@@ -35,15 +38,14 @@ export default async function handler(request, res) {
         "backgroundColor": "grey",
         "barColorLeft": "red",
         "barColorRight": "green",
-        "counterStartTime": "0",
-        "counterEndTime": "100", 
+        "counterStartTime": 0,
+        "counterEndTime": 109, 
         "counterLabel": "1",  
         "barWidth": "97.8%",
       },
   
     ];
 
-    const progressBars = progressBarsData.map((data) => new ProgressBar(data));
 
     res.setHeader('Cache-Control', 'max-age=0, s-maxage=1800');
     res.setHeader("Access-Control-Allow-Credentials", "true");

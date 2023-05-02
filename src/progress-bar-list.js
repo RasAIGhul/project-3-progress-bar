@@ -49,13 +49,11 @@ class ProgressBarList extends IntersectionObserverMixin(LitElement) {
             title="${barArray.title}" 
             counterStartTime = "${barArray.counterStartTime}"
             counterEndTime = "${barArray.counterEndTime}" 
-            counterLabel ="${barArray.counterLabel}" 
-            duration = "${barArray.duration}" 
+            counterLabel ="${barArray.counterLabel}"
             barWidth = "${barArray.barWidth}" 
             barColorLeft = "${barArray.barColorLeft}"
             barColorRight = "${barArray.barColorRight}" 
             backgroundColor ="${barArray.backgroundColor}"></progress-bar>
-        </progress-bar>
         `)}
         </div>
         `:``}

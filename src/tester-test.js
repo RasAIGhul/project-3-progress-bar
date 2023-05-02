@@ -10,11 +10,11 @@ class TesterTest extends LitElement {
     width: 100px;
     height: 100px;
     background-color: blue;
-    transition: width 2s;
+    transition: width 1000s;
   }
 
   .box:hover {
-    width: 200px;
+    width: 1000px;
   }
   `;
 
@@ -24,7 +24,6 @@ class TesterTest extends LitElement {
 
   handleClick() {
     const wrapper = this.shadowRoot.querySelector('.wrapper');
-    wrapper.style.width = '500px';
   }
 
   render() {

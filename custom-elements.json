@@ -393,15 +393,16 @@
               },
               "default": "\"my will to live\"",
               "privacy": "public",
-              "attribute": "title"
+              "attribute": "title",
+              "reflects": true
             },
             {
               "kind": "field",
               "name": "counterStartTime",
               "type": {
-                "text": "string"
+                "text": "number"
               },
-              "default": "\"5\"",
+              "default": "5",
               "privacy": "public",
               "attribute": "counterStartTime",
               "reflects": true
@@ -410,9 +411,9 @@
               "kind": "field",
               "name": "counterEndTime",
               "type": {
-                "text": "string"
+                "text": "number"
               },
-              "default": "\"10\"",
+              "default": "10",
               "privacy": "public",
               "attribute": "counterEndTime",
               "reflects": true
@@ -427,12 +428,6 @@
               "privacy": "public",
               "attribute": "counterLabel",
               "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "duration",
-              "privacy": "public",
-              "attribute": "duration"
             },
             {
               "kind": "field",
@@ -480,6 +475,24 @@
             },
             {
               "kind": "field",
+              "name": "goodToRender",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "privacy": "public",
+              "attribute": "goodToRender",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "duration",
+              "privacy": "public",
+              "attribute": "duration",
+              "reflects": true
+            },
+            {
+              "kind": "field",
               "name": "elementVisible",
               "privacy": "public",
               "attribute": "element-visible",
@@ -487,6 +500,10 @@
             }
           ],
           "attributes": [
+            {
+              "name": "duration",
+              "fieldName": "duration"
+            },
             {
               "name": "element-visible",
               "fieldName": "elementVisible"
@@ -516,16 +533,16 @@
               "fieldName": "counterEndTime"
             },
             {
-              "name": "duration",
-              "fieldName": "duration"
-            },
-            {
               "name": "counterLabel",
               "fieldName": "counterLabel"
             },
             {
               "name": "barWidth",
               "fieldName": "barWidth"
+            },
+            {
+              "name": "goodToRender",
+              "fieldName": "goodToRender"
             }
           ],
           "mixins": [

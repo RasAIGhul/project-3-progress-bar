@@ -5,23 +5,24 @@ import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-elemen
 
 class ProgressBar extends IntersectionObserverMixin(LitElement) {
   static properties = {
+    duration: { type: Number, reflect: true },
     elementVisible: { type: Boolean, reflect:true, attribute: "element-visible" },
-    title: { type: String },
+    title: { type: String, reflect: true},
     backgroundColor: {type: String, reflect: true},
     barColorLeft: {type: String, reflect: true},
     barColorRight: {type: String, reflect: true},
-    counterStartTime: {type: String, reflect: true},
-    counterEndTime: {type: String, reflect: true},
-    duration: {type: String},
+    counterStartTime: {type: Number, reflect: true},
+    counterEndTime: {type: Number, reflect: true},
     counterLabel: {type: String, reflect: true},
     barWidth: {type: String, reflect: true},
+    goodToRender: {type: Boolean, reflect: true},
 
 
   }
 
   static styles = css`
       .wrapper{
-        display: flex; 
+        display: flex;
         justify-content: center;
         margin: 20px;
       }
@@ -34,26 +35,23 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
         background: grey;
       }
       .title{
-        margin-top: 20px; 
+        margin-top: 20px;
+        width: 6.5em;
         font-size: 20px;  
       }
       .backgroundProgress{
-        background: linear-gradient(to left, red, yellow);
+        background: linear-gradient(to left, var(--bar-color-left, red), var(--bar-color-right, yellow));
         border-radius: 5px;
         height: 3.14em;
-        width: 0%;
+        width: var(--bar-width, 0%);
         margin-left: 5px;
         margin-top: 5px;
-        transition: width 2s linear;
+        transition: width var(--duration-of-transition, 2s) linear;
 
-      }
-      .loaded{
-        width: 0%;
-        transition: width 2s linear;
       }
       .counterClass{
         position: absolute;
-        right: 27%;
+        right: 30%;
         margin-top: 25px;
       }
 
@@ -63,46 +61,54 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
   constructor() {
     super();
     this.title = "my will to live";
-    this.counterStartTime = "5";  // The value you want the timer to start at
-    this.counterEndTime = "10";  // The value you want the timer to end at
+    this.counterStartTime = 5;  // The value you want the timer to start at
+    this.counterEndTime = 10;  // The value you want the timer to end at
     this.counterLabel = "10";  // What physical number you want the timer to be at when it finishes NOT TIME
-    this.duration = this.counterEndTime - this.counterStartTime;
     this.barWidth = "97.8%";
     this.barColorLeft = "red";
     this.barColorRight = "green";
-    this.backgroundColor = "grey";
+    this.backgroundColor = "grey"; 
+    this.goodToRender = false;
   }
 
   updated(propertiesChanged) {
+    if(propertiesChanged.has("counterStartTime") && propertiesChanged.has("counterEndTime"))
+    {
+      this.duration = this.counterEndTime - this.counterStartTime;
+      this.goodToRender = true;
+    }
     propertiesChanged.forEach((oldValue, propName) => {
       if (propName == "elementVisible" && this[propName]) {
-        const barID = this.shadowRoot.querySelector('#barID');
         const backgroundProgress = this.shadowRoot.querySelector('.backgroundProgress');
-        backgroundProgress.style.width = this.barWidth;
-        backgroundProgress.style.transition = "width " + this.duration + "s linear";
-        backgroundProgress.style.background = "linear-gradient(to left," + this.barColorLeft+ "," + this.barColorRight + ")";
+        backgroundProgress.style.setProperty('--bar-color-left',this.barColorLeft);
+        backgroundProgress.style.setProperty('--bar-color-right',this.barColorRight);
+        backgroundProgress.style.setProperty('--duration-of-transition', this.duration + "s");
+        backgroundProgress.style.setProperty('--bar-width', this.barWidth);
         this.shadowRoot.querySelector('.progressBarStyling').style.background = this.backgroundColor;
-        barID.classList.add('loaded');
       }
     });
+  
   }
 
+  
 
-  render() {
-    return html`
-      
-  <div class='wrapper'> 
-        <div class='title'> 
-        ${this.title} 
-        </div>
-        <div class='progressBarStyling'>
-          <div id='barID' class='backgroundProgress'>
-          </div>
-        </div>
-        <count-up class='counterClass' start=${this.counterStartTime} duration=${this.duration} end=${this.counterLabel} noeasing=true></count-up>
-  </div>
-    `;
-  }
+   render() {
+    if(this.goodToRender && this.duration){
+      return html`
+      <div class='wrapper'> 
+               <div class='title'> 
+                 ${this.title} 
+               </div>   
+             <div class='progressBarStyling'>
+               <div class='backgroundProgress'>
+               </div>
+             </div>
+            <count-up id='countUpID' class='counterClass' start=${this.counterStartTime} end=${this.counterLabel} duration=${this.duration} noeasing=true></count-up>
+       </div>
+        `;
+    }
+
+   }
 }
 
 customElements.define('progress-bar', ProgressBar);
