@@ -1,45 +1,50 @@
-
-
 export default async function handler(request, res) {
 
-    const classlist=[
+    const progressBars=[
       {
         "title": "my will to live",
+        "backgroundColor": "grey",
+        "barColorLeft": "red",
+        "barColorRight": "green",
         "counterStartTime": "0",
-        "counterEndTime": "100",  
+        "counterEndTime": "100", 
+        "duration": "2.5",
         "counterLabel": "1",  
-        "barWidth": "100%",
-        "barColorLeft": "red",
-        "barColorRight": "green",
-        "backgroundColor": "grey"
+        "barWidth": "97.8%",
       },
       {
         "title": "my will to live",
-        "counterTime": "100",  
-        "counterLabel": "1",  
-        "barWidth": "97%",
+        "backgroundColor": "grey",
         "barColorLeft": "red",
         "barColorRight": "green",
-        "backgroundColor": "grey"
+        "counterStartTime": "0",
+        "counterEndTime": "100", 
+        "duration": "2.5",
+        "counterLabel": "1",  
+        "barWidth": "97.8%",
       },
       {
         "title": "my will to live",
-        "counterTime": "100",  
-        "counterLabel": "1",  
-        "barWidth": "97%",
+        "backgroundColor": "grey",
         "barColorLeft": "red",
         "barColorRight": "green",
-        "backgroundColor": "grey"
+        "counterStartTime": "0",
+        "counterEndTime": "100", 
+        "duration": "2.5",
+        "counterLabel": "1",  
+        "barWidth": "97.8%",
       },
       {
         "title": "my will to live",
-        "counterTime": "100",  
-        "counterLabel": "1",  
-        "barWidth": "97%",
+        "backgroundColor": "grey",
         "barColorLeft": "red",
         "barColorRight": "green",
-        "backgroundColor": "grey"
-      }
+        "counterStartTime": "0",
+        "counterEndTime": "100", 
+        "duration": "2.5",
+        "counterLabel": "1",  
+        "barWidth": "97.8%",
+      },
   
     ];
     res.setHeader('Cache-Control', 'max-age=0, s-maxage=1800');

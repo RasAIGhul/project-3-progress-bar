@@ -4,45 +4,585 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/project-3-progress-bar.js",
+      "path": "api/progress-bars.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "handler",
+          "parameters": [
+            {
+              "name": "request"
+            },
+            {
+              "name": "res"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "handler",
+            "module": "api/progress-bars.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/count-up.js",
       "declarations": [
         {
           "kind": "class",
-          "description": "",
-          "name": "Project3ProgressBar",
+          "description": "`count-up`\n`count up js wrapper with minimal styling`",
+          "name": "CountUpElement",
           "members": [
             {
               "kind": "field",
-              "name": "header",
+              "name": "haxProperties",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "tag",
+              "static": true,
+              "description": "Store the tag name to make it easier to obtain directly."
+            },
+            {
+              "kind": "field",
+              "name": "start",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "privacy": "public",
+              "description": "Starting point for counting",
+              "attribute": "start"
+            },
+            {
+              "kind": "field",
+              "name": "end",
+              "type": {
+                "text": "number"
+              },
+              "default": "100",
+              "privacy": "public",
+              "description": "End point for counting stopping",
+              "attribute": "end"
+            },
+            {
+              "kind": "field",
+              "name": "duration",
+              "type": {
+                "text": "number"
+              },
+              "default": "2.5",
+              "privacy": "public",
+              "description": "Duration to count",
+              "attribute": "duration",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "noeasing",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "privacy": "public",
+              "description": "Disable easing animation",
+              "attribute": "noeasing",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "decimalplaces",
+              "type": {
+                "text": "number"
+              },
+              "default": "2",
+              "privacy": "public",
+              "description": "decimal places to show",
+              "attribute": "decimalplaces",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "separator",
               "type": {
                 "text": "string"
               },
-              "default": "'My app'",
+              "default": "\",\"",
               "privacy": "public",
-              "attribute": "header"
+              "description": "separator for 100s groupings",
+              "attribute": "separator"
+            },
+            {
+              "kind": "field",
+              "name": "decimal",
+              "type": {
+                "text": "string"
+              },
+              "default": "\".\"",
+              "privacy": "public",
+              "description": "decimal point character",
+              "attribute": "decimal"
+            },
+            {
+              "kind": "field",
+              "name": "prefixtext",
+              "type": {
+                "text": "string"
+              },
+              "default": "\" \"",
+              "privacy": "public",
+              "description": "prefix string before the number counting",
+              "attribute": "prefixtext"
+            },
+            {
+              "kind": "field",
+              "name": "suffixtext",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"s \"",
+              "privacy": "public",
+              "description": "suffix string after the number counting",
+              "attribute": "suffixtext"
+            },
+            {
+              "kind": "field",
+              "name": "",
+              "privacy": "public",
+              "attribute": ""
+            },
+            {
+              "kind": "field",
+              "name": "thresholds",
+              "privacy": "public",
+              "attribute": "thresholds"
+            },
+            {
+              "kind": "field",
+              "name": "rootMargin",
+              "privacy": "public",
+              "attribute": "root-margin"
+            },
+            {
+              "kind": "field",
+              "name": "ratio",
+              "privacy": "public",
+              "attribute": "ratio",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "elementVisible",
+              "privacy": "public",
+              "attribute": "elementVisible"
             }
           ],
           "attributes": [
             {
-              "name": "header",
-              "fieldName": "header"
+              "name": "",
+              "fieldName": ""
+            },
+            {
+              "name": "start",
+              "description": "Starting point for counting",
+              "fieldName": "start"
+            },
+            {
+              "name": "end",
+              "description": "End point for counting stopping",
+              "fieldName": "end"
+            },
+            {
+              "name": "duration",
+              "description": "Duration to count",
+              "fieldName": "duration"
+            },
+            {
+              "name": "noeasing",
+              "description": "Disable easing animation",
+              "fieldName": "noeasing"
+            },
+            {
+              "name": "decimalplaces",
+              "description": "decimal places to show",
+              "fieldName": "decimalplaces"
+            },
+            {
+              "name": "separator",
+              "description": "separator for 100s groupings",
+              "fieldName": "separator"
+            },
+            {
+              "name": "decimal",
+              "description": "decimal point character",
+              "fieldName": "decimal"
+            },
+            {
+              "name": "prefixtext",
+              "description": "prefix string before the number counting",
+              "fieldName": "prefixtext"
+            },
+            {
+              "name": "suffixtext",
+              "description": "suffix string after the number counting",
+              "fieldName": "suffixtext"
+            },
+            {
+              "name": "thresholds",
+              "fieldName": "thresholds"
+            },
+            {
+              "name": "root-margin",
+              "fieldName": "rootMargin"
+            },
+            {
+              "name": "ratio",
+              "fieldName": "ratio"
+            },
+            {
+              "name": "elementVisible",
+              "fieldName": "elementVisible"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "IntersectionObserverMixin",
+              "package": "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js"
             }
           ],
           "superclass": {
             "name": "LitElement",
             "package": "lit"
           },
-          "tagName": "project-3-progress-bar",
+          "tagName": "count-up",
           "customElement": true
         }
       ],
       "exports": [
         {
           "kind": "custom-element-definition",
-          "name": "project-3-progress-bar",
           "declaration": {
-            "name": "Project3ProgressBar",
-            "module": "src/project-3-progress-bar.js"
+            "name": "CountUpElement",
+            "module": "src/count-up.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "CountUpElement",
+          "declaration": {
+            "name": "CountUpElement",
+            "module": "src/count-up.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "CountUp",
+          "declaration": {
+            "name": "CountUp",
+            "module": "src/count-up.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/countup.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "CountUp"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CountUp",
+          "declaration": {
+            "name": "CountUp",
+            "module": "src/countup.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/progress-bar-list.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ProgressBarList",
+          "members": [
+            {
+              "kind": "method",
+              "name": "createBars"
+            },
+            {
+              "kind": "field",
+              "name": "barArray",
+              "type": {
+                "text": "array"
+              },
+              "default": "[]",
+              "privacy": "public",
+              "attribute": "barArray"
+            },
+            {
+              "kind": "field",
+              "name": "",
+              "privacy": "public",
+              "attribute": ""
+            }
+          ],
+          "attributes": [
+            {
+              "name": "",
+              "fieldName": ""
+            },
+            {
+              "name": "barArray",
+              "fieldName": "barArray"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "IntersectionObserverMixin",
+              "package": "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "progress-bar-list",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "progress-bar-list",
+          "declaration": {
+            "name": "ProgressBarList",
+            "module": "src/progress-bar-list.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/progress-bar.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ProgressBar",
+          "members": [
+            {
+              "kind": "field",
+              "name": "title",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"my will to live\"",
+              "privacy": "public",
+              "attribute": "title"
+            },
+            {
+              "kind": "field",
+              "name": "counterStartTime",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"5\"",
+              "privacy": "public",
+              "attribute": "counterStartTime",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "counterEndTime",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"10\"",
+              "privacy": "public",
+              "attribute": "counterEndTime",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "counterLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"10\"",
+              "privacy": "public",
+              "attribute": "counterLabel",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "duration",
+              "privacy": "public",
+              "attribute": "duration",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "barWidth",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"97.8%\"",
+              "privacy": "public",
+              "attribute": "barWidth",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "barColorLeft",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"red\"",
+              "privacy": "public",
+              "attribute": "barColorLeft",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "barColorRight",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"green\"",
+              "privacy": "public",
+              "attribute": "barColorRight",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "backgroundColor",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"grey\"",
+              "privacy": "public",
+              "attribute": "backgroundColor",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "elementVisible",
+              "privacy": "public",
+              "attribute": "element-visible",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "element-visible",
+              "fieldName": "elementVisible"
+            },
+            {
+              "name": "title",
+              "fieldName": "title"
+            },
+            {
+              "name": "backgroundColor",
+              "fieldName": "backgroundColor"
+            },
+            {
+              "name": "barColorLeft",
+              "fieldName": "barColorLeft"
+            },
+            {
+              "name": "barColorRight",
+              "fieldName": "barColorRight"
+            },
+            {
+              "name": "counterStartTime",
+              "fieldName": "counterStartTime"
+            },
+            {
+              "name": "counterEndTime",
+              "fieldName": "counterEndTime"
+            },
+            {
+              "name": "duration",
+              "fieldName": "duration"
+            },
+            {
+              "name": "counterLabel",
+              "fieldName": "counterLabel"
+            },
+            {
+              "name": "barWidth",
+              "fieldName": "barWidth"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "IntersectionObserverMixin",
+              "package": "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "progress-bar",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "progress-bar",
+          "declaration": {
+            "name": "ProgressBar",
+            "module": "src/progress-bar.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/tester-test.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TesterTest",
+          "members": [
+            {
+              "kind": "method",
+              "name": "handleClick"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "tester-test",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "tester-test",
+          "declaration": {
+            "name": "TesterTest",
+            "module": "src/tester-test.js"
           }
         }
       ]
