@@ -9,9 +9,9 @@ export default async function handler(request, res) {
         "barColorLeft": "black",
         "barColorRight": "blue",
         "counterStartTime": 6,
-        "counterEndTime": 1006, 
+        "counterEndTime": 1, 
         "counterLabel": "10",  
-        "barWidth": "97.8%",
+        "barWidth": "10%",
       },
       {
         "title": "my will to live",

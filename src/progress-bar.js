@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import "./count-up.js";
+import '@lrnwebcomponents/count-up/src/count-up.js';
 import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js";
 
 
@@ -16,8 +16,8 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
     counterLabel: {type: String, reflect: true},
     barWidth: {type: String, reflect: true},
     goodToRender: {type: Boolean, reflect: true},
-
-
+    durationOfBar: {type: Number, reflect: true},
+    durationOfCountUp: {type: Number, reflect: true},
   }
 
   static styles = css`
@@ -47,13 +47,20 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
         margin-left: 5px;
         margin-top: 5px;
         transition: width var(--duration-of-transition, 2s) linear;
-
+        
       }
       .counterClass{
         position: absolute;
         right: 30%;
         margin-top: 25px;
       }
+
+    @media (prefers-reduced-motion: reduce) {
+      .backgroundProgress {
+        transition-timing-function: steps(4,jump-end);
+      }
+    }
+
 
      
   `;
@@ -69,20 +76,35 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
     this.barColorRight = "green";
     this.backgroundColor = "grey"; 
     this.goodToRender = false;
+    
+    
   }
 
+
+  
+
   updated(propertiesChanged) {
-    if(propertiesChanged.has("counterStartTime") && propertiesChanged.has("counterEndTime"))
+     if(propertiesChanged.has("counterStartTime") || propertiesChanged.has("counterEndTime"))
     {
-      this.duration = this.counterEndTime - this.counterStartTime;
-      this.goodToRender = true;
-    }
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if(!prefersReducedMotion){
+          this.durationOfCountUp = this.counterEndTime - this.counterStartTime;
+        }
+        else
+        {
+          this.durationOfCountUp = 0;
+        }
+        this.durationOfBar = this.counterEndTime - this.counterStartTime;
+        this.goodToRender = true;
+        
+     }
+
     propertiesChanged.forEach((oldValue, propName) => {
       if (propName == "elementVisible" && this[propName]) {
         const backgroundProgress = this.shadowRoot.querySelector('.backgroundProgress');
         backgroundProgress.style.setProperty('--bar-color-left',this.barColorLeft);
         backgroundProgress.style.setProperty('--bar-color-right',this.barColorRight);
-        backgroundProgress.style.setProperty('--duration-of-transition', this.duration + "s");
+        backgroundProgress.style.setProperty('--duration-of-transition', this.durationOfBar + "s");
         backgroundProgress.style.setProperty('--bar-width', this.barWidth);
         this.shadowRoot.querySelector('.progressBarStyling').style.background = this.backgroundColor;
       }
@@ -93,7 +115,7 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
   
 
    render() {
-    if(this.goodToRender && this.duration){
+    if(this.goodToRender){
       return html`
       <div class='wrapper'> 
                <div class='title'> 
@@ -103,7 +125,7 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
                <div class='backgroundProgress'>
                </div>
              </div>
-            <count-up id='countUpID' class='counterClass' start=${this.counterStartTime} end=${this.counterLabel} duration=${this.duration} noeasing=true></count-up>
+            <count-up id='countUpID' class='counterClass' start=${this.counterStartTime} end=${this.counterLabel} duration=${this.durationOfCountUp} noeasing=true></count-up>
        </div>
         `;
     }

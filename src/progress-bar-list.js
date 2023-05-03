@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import "./progress-bar.js";
-import "./countup.js";
+import '@lrnwebcomponents/count-up/src/count-up.js';
 import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js";
 
 
