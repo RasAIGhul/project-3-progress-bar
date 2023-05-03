@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import "./progress-bar.js";
-import '@lrnwebcomponents/count-up/src/count-up.js';
+import '@lrnwebcomponents/count-up/count-up.js';
 import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js";
 
 
@@ -47,13 +47,15 @@ class ProgressBarList extends IntersectionObserverMixin(LitElement) {
             ${this.barArray.map(barArray => html`
             <progress-bar 
             title="${barArray.title}" 
-            counterStartTime = "${barArray.counterStartTime}"
-            counterEndTime = "${barArray.counterEndTime}" 
-            counterLabel ="${barArray.counterLabel}"
-            barWidth = "${barArray.barWidth}" 
-            barColorLeft = "${barArray.barColorLeft}"
-            barColorRight = "${barArray.barColorRight}" 
-            backgroundColor ="${barArray.backgroundColor}"></progress-bar>
+            counterStartTime="${barArray.counterStartTime}"
+            counterEndTime="${barArray.counterEndTime}" 
+            counterLabel="${barArray.counterLabel}"
+            barWidth="${barArray.barWidth}" 
+            barColorLeft="${barArray.barColorLeft}"
+            barColorRight="${barArray.barColorRight}" 
+            backgroundColor="${barArray.backgroundColor}"
+            label="${barArray.label}"
+            suffixText="${barArray.suffixText}" ></progress-bar>
         `)}
         </div>
         `:``}

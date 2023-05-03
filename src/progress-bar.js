@@ -1,11 +1,11 @@
 import { LitElement, html, css } from 'lit';
-import '@lrnwebcomponents/count-up/src/count-up.js';
+import '@lrnwebcomponents/count-up/count-up.js';
 import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js";
 
 
 class ProgressBar extends IntersectionObserverMixin(LitElement) {
   static properties = {
-    duration: { type: Number, reflect: true },
+
     elementVisible: { type: Boolean, reflect:true, attribute: "element-visible" },
     title: { type: String, reflect: true},
     backgroundColor: {type: String, reflect: true},
@@ -18,6 +18,9 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
     goodToRender: {type: Boolean, reflect: true},
     durationOfBar: {type: Number, reflect: true},
     durationOfCountUp: {type: Number, reflect: true},
+    label:  { type: String, reflect: true },
+    suffixText: {type: String, reflect: true},
+  
   }
 
   static styles = css`
@@ -25,8 +28,10 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
         display: flex;
         justify-content: center;
         margin: 20px;
+        
       }
       .progressBarStyling{
+        display: inline-block;
         border: 3px solid black;
         border-radius: 10px;
         height: 60px;
@@ -46,19 +51,25 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
         width: var(--bar-width, 0%);
         margin-left: 5px;
         margin-top: 5px;
+        margin-right: 500px;
         transition: width var(--duration-of-transition, 2s) linear;
         
       }
       .counterClass{
-        position: absolute;
-        right: 30%;
-        margin-top: 25px;
+      display: inline-block; 
+      margin-left: 10px;
+      margin-top: 25px;
+      width: 6.5em;
+      }
+      .suffixClass{
+        width: 6.5em;
       }
 
     @media (prefers-reduced-motion: reduce) {
       .backgroundProgress {
-        transition-timing-function: steps(4,jump-end);
+        transition-timing-function: steps(2,jump-end);
       }
+
     }
 
 
@@ -75,7 +86,9 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
     this.barColorLeft = "red";
     this.barColorRight = "green";
     this.backgroundColor = "grey"; 
+    this.label = "A progress bar and a timer along with a title.";
     this.goodToRender = false;
+    this.suffixText = "s";
     
     
   }
@@ -107,6 +120,7 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
         backgroundProgress.style.setProperty('--duration-of-transition', this.durationOfBar + "s");
         backgroundProgress.style.setProperty('--bar-width', this.barWidth);
         this.shadowRoot.querySelector('.progressBarStyling').style.background = this.backgroundColor;
+  
       }
     });
   
@@ -117,7 +131,7 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
    render() {
     if(this.goodToRender){
       return html`
-      <div class='wrapper'> 
+      <div class='wrapper' aria-label=${this.label}> 
                <div class='title'> 
                  ${this.title} 
                </div>   
@@ -125,7 +139,15 @@ class ProgressBar extends IntersectionObserverMixin(LitElement) {
                <div class='backgroundProgress'>
                </div>
              </div>
-            <count-up id='countUpID' class='counterClass' start=${this.counterStartTime} end=${this.counterLabel} duration=${this.durationOfCountUp} noeasing=true></count-up>
+            <count-up 
+            class='counterClass' 
+            start=${this.counterStartTime} 
+            end=${this.counterLabel} 
+            duration=${this.durationOfCountUp} 
+            noeasing=true
+            decimalplaces=2
+            suffixtext=${this.suffixText}>
+          </count-up>
        </div>
         `;
     }
